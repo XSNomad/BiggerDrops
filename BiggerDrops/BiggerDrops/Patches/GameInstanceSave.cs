@@ -10,15 +10,19 @@ namespace BiggerDrops.Patches
 {
     [HarmonyPatch(typeof(GameInstanceSave), MethodType.Constructor)]
     [HarmonyPatch(new Type[] { typeof(GameInstance), typeof(SaveReason) })]
-    public static class GameInstanceSave_Constructor_Patch {
-        static void Postfix(GameInstanceSave __instance) {
+    public static class GameInstanceSave_Constructor_Patch
+    {
+        public static void Postfix(GameInstanceSave __instance)
+        {
             Helper.SaveState(__instance.InstanceGUID, __instance.SaveTime);
         }
     }
 
     [HarmonyPatch(typeof(GameInstance), "Load")]
-    public static class GameInstance_Load_Patch {
-        static void Prefix(GameInstanceSave save) {
+    public static class GameInstance_Load_Patch
+    {
+        public static void Prefix(GameInstanceSave save)
+        {
             Helper.LoadState(save.InstanceGUID, save.SaveTime);
         }
     }

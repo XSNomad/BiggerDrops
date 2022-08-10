@@ -7,14 +7,10 @@ namespace BiggerDrops.Patches
     [HarmonyPatch(typeof(SGCmdCenterLanceConfigBG), "OnAddedToHierarchy")]
     public static class SGCmdCenterLanceConfigBG_OnAddedToHierarchy
     {
-        static void Postfix(SGCmdCenterLanceConfigBG __instance)
+        public static void Postfix(SGCmdCenterLanceConfigBG __instance)
         {
-            if (CustomUnitsAPI.Detected() == false)
-            {
-                BiggerDrops.baysAlreadyAdded = 0;
-                __instance.LC.UpdateSlotsCount(DropManager.DefaultMechSlots +
-                                               DropManager.AdditionalMechSlots());
-            }
+            BiggerDrops.baysAlreadyAdded = 0;
+            __instance.LC.UpdateSlotsCount(DropManager.DefaultMechSlots + DropManager.AdditionalMechSlots());
         }
     }
 }

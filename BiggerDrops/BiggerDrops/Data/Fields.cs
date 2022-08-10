@@ -5,7 +5,8 @@ using System;
 
 namespace BiggerDrops.Data
 {
-    public class Fields {
-        public static List<string> callsigns = new List<string>();
+    public class Fields
+    {
+        public static List<string> callsigns = new();
     }
 }

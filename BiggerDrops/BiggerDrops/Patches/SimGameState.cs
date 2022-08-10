@@ -29,20 +29,4 @@ namespace BiggerDrops.Patches
             }
         }
     }
-    [HarmonyPatch(typeof(SimGameState), "AddArgoUpgrade")]
-    class SimGameState_AddArgoUpgrade {
-        public static void Postfix(SimGameState __instance) {
-            if (BiggerDrops.settings.allowUpgrades) {
-                DropManager.UpdateCULances();
-            }
-        }
-    }
-    [HarmonyPatch(typeof(SimGameState), "ApplyArgoUpgrades")]
-    class SimGameState_ApplyArgoUpgrades {
-        public static void Postfix(SimGameState __instance) {
-            if (BiggerDrops.settings.allowUpgrades) {
-                DropManager.UpdateCULances();
-            }
-        }
-    }
 }

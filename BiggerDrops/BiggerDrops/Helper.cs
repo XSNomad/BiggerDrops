@@ -6,54 +6,67 @@ using System.IO;
 using UnityEngine;
 using BiggerDrops.Data;
 
-namespace BiggerDrops {
-    public class SaveFields {
-        public List<string> callsigns = new List<string>();
+namespace BiggerDrops
+{
+    public class SaveFields
+    {
+        public List<string> callsigns = new();
 
-        public SaveFields(List<string> callsigns) {
+        public SaveFields(List<string> callsigns)
+        {
             this.callsigns = callsigns;
         }
     }
 
-    public class Helper {
+    public class Helper
+    {
 
-        public static void SaveState(string instanceGUID, DateTime saveTime) {
-            try {
+        public static void SaveState(string instanceGUID, DateTime saveTime)
+        {
+            try
+            {
                 int unixTimestamp = (int)(saveTime.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-                
+
                 DirectoryInfo modsDir = Directory.GetParent(BiggerDrops.ModDirectory);
                 DirectoryInfo battletechDir = modsDir.Parent;
                 // We want to write to Battletech/ModSaves/PersistentMapClient directory
                 DirectoryInfo modSavesDir = battletechDir.CreateSubdirectory("ModSaves");
-                string filePath = battletechDir+ "/ModSaves/BiggerDrops/" + instanceGUID + "-" + unixTimestamp + ".json";
+                string filePath = battletechDir + "/ModSaves/BiggerDrops/" + instanceGUID + "-" + unixTimestamp + ".json";
                 (new FileInfo(filePath)).Directory.Create();
-                using (StreamWriter writer = new StreamWriter(filePath, true)) {
-                    SaveFields fields = new SaveFields(Fields.callsigns);
+                using (StreamWriter writer = new(filePath, true))
+                {
+                    SaveFields fields = new(Fields.callsigns);
                     string json = JsonConvert.SerializeObject(fields);
                     writer.Write(json);
                 }
             }
-            catch (Exception ex) {
-                Logger.LogError(ex);
+            catch //(Exception ex)
+            {
+
             }
         }
 
-        public static void LoadState(string instanceGUID, DateTime saveTime) {
-            try {
+        public static void LoadState(string instanceGUID, DateTime saveTime)
+        {
+            try
+            {
                 int unixTimestamp = (int)(saveTime.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
                 DirectoryInfo modsDir = Directory.GetParent(BiggerDrops.ModDirectory);
                 DirectoryInfo battletechDir = modsDir.Parent;
                 string filePath = battletechDir + "/ModSaves/BiggerDrops/" + instanceGUID + "-" + unixTimestamp + ".json";
-                if (File.Exists(filePath)) {
-                    using (StreamReader r = new StreamReader(filePath)) {
+                if (File.Exists(filePath))
+                {
+                    using (StreamReader r = new(filePath))
+                    {
                         string json = r.ReadToEnd();
                         SaveFields save = JsonConvert.DeserializeObject<SaveFields>(json);
                         Fields.callsigns = save.callsigns;
                     }
                 }
             }
-            catch (Exception ex) {
-                Logger.LogError(ex);
+            catch //(Exception ex)
+            {
+
             }
         }
     }

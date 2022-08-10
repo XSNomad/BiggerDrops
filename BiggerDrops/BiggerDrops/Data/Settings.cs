@@ -5,8 +5,9 @@ using System;
 
 namespace BiggerDrops.Data
 {
-    public class Settings {
-      
+    public class Settings
+    {
+
         public int MAX_VEHICLE_SLOTS = 8;
         public static readonly string EMPLOYER_LANCE_GUID = "ecc8d4f2-74b4-465d-adf6-84445e5dfc230";
         public int MAX_CU_DROP_SIZE = 12;
@@ -27,8 +28,6 @@ namespace BiggerDrops.Data
         public int additinalPlayerMechSlots = 4;
         public int defaultMaxTonnage = 500;
         public int CuV2FormationSize = 4;
-        public List<string> CuV2InitialSlots = new List<string>();
-
-
+        public List<string> CuV2InitialSlots = new();
     }
 }

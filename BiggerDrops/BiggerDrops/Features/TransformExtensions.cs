@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 public static class TransformExtensions {
     public static List<T> FindObjectsWithinProximity<T>(this Transform transform, float proximity) where T : MonoBehaviour {
-        List<T> objects = new List<T>();
+        List<T> objects = new();
 
-        T[] foundObjects = GameObject.FindObjectsOfType<T>();
+        T[] foundObjects = Object.FindObjectsOfType<T>();
         for (int x = 0; x < foundObjects.Length; x++) {
             T obj = foundObjects[x];
             if ((obj.transform.position - transform.position).magnitude <= proximity) {
