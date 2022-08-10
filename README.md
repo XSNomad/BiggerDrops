@@ -1,4 +1,5 @@
-# BiggerDrops The Stand Alone Edition. For those that want more units without any dependencies. 
+# BiggerDrops The Stand Alone Edition. 
+For those that want more units without any dependencies. 
 
 Bigger Drops is a mod for HBS BattleTech that adds on the ability to expand your drop size from 4 to 8 or more units
 
